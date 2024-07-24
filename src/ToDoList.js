@@ -16,7 +16,14 @@ export const ToDoList = () => {
      })
     }
     
-  
+  function removeActivity(i){
+    const filteringList = listData.filter((elem,id)=>{
+        return i != id;
+   
+    })
+    setListData(filteringList);
+
+  }
 
 
   return (
@@ -31,8 +38,8 @@ export const ToDoList = () => {
             
                 {listData != [] && listData.map((data,i)=>{
                     return(
-                        <ul>
-                           <li className='li'>{data}<button>Remove</button></li>
+                        <ul className='ul' key={i}>
+                           <li className='li'>{data}<button onClick={()=>removeActivity(i)}>Remove</button></li>
                         </ul>
                       
                 
