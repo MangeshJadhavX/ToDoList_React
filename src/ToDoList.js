@@ -4,12 +4,20 @@ import './'
 export const ToDoList = () => {
   
     const [activity,setActivity] = useState("");
-    cont [listData,setListData] = useState([]);
+    const [listData,setListData] = useState([]);
 
     function addActivity(){
-     setListData([...listData,activity]);
-     console.log(listData); 
+     setListData((listData)=>{
+        const addedList = [...listData,activity];
+        console.log(addedList);
+        setActivity("");
+        return addedList;
+
+     })
     }
+    
+  
+
 
   return (
     <div className='to_do_list'>
@@ -20,6 +28,19 @@ export const ToDoList = () => {
                 setActivity(e.target.value);
             }} ></input>
             <button onClick={addActivity} className='btn' >Add Task</button>
+            
+                {listData != [] && listData.map((data,i)=>{
+                    return(
+                        <ul>
+                           <li className='li'>{data}<button>Remove</button></li>
+                        </ul>
+                      
+                
+                    )
+                })}
+            
+            
+
           </div>
         </div>
     </div>
